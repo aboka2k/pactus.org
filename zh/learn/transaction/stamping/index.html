@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh">
+  
+
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4BTY819M6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-Q4BTY819M6");
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Stamping Transactions | 帕克图斯区块链</title>
+  <meta name="description" content="" />
+
+  <meta property="og:title" content="Stamping Transactions | 帕克图斯区块链" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="帕克图斯区块链" />
+  <meta property="og:url" content="https://pactus.org//learn/transaction/stamping/" />
+  <meta property="og:type" content="website" />
+
+  <link rel="shortcut icon" href="https://pactus.org/assets/images/logos/208_circle.png" type="image/png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="https://pactus.org/assets/images/logos/128_circle.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="https://pactus.org/assets/images/logos/64_circle.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pactus.org/assets/images/logos/32_circle.png" />
+
+  <link href="https://pactus.org/assets/css/bootstrap.min.css" rel="stylesheet" />
+  
+
+  <link href="https://pactus.org/assets/css/native.css" rel="stylesheet" />
+  <link href="/assets/css/fontawesome.min.css" rel="stylesheet" />
+  <link href="https://pactus.org/assets/css/custom.css" rel="stylesheet" />
+
+  <script src="https://pactus.org/assets/js/jquery-3.6.1.min.js"></script>
+  <script src="https://pactus.org/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="https://pactus.org/assets/js/anchor.min.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://pactus.org/assets/js/custom.js"></script>
+</head>
+
+
+  <body>
+    <div class="container-md px-0">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand logo p-3" href="/zh/">
+        <img src="https://pactus.org/assets/images/logos/text_logo.png" alt="Pactus blockchain" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="topnav navbar-nav" style="margin-right: auto !important">
+          <li class="nav-item dropdown ps-4">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              关于
+            </a>
+            <ul class="dropdown-menu bg-light border-0 pe-0 fixed-menu">
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/zh/about/what-is-pactus/">
+                  什么是帕克图斯？
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/zh/about/roadmap/">
+                  路线图
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/zh/about/faq/">常见问题解答</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item ps-4">
+            <a class="nav-link" href="/zh/learn/">学习</a>
+          </li>
+          <li class="nav-item ps-4">
+            <a class="nav-link" href="/zh/download/">下载</a>
+          </li>
+          <li class="nav-item ps-4">
+            <a class="nav-link" href="https://pips.pactus.org" target="_blank">PIPs</a>
+          </li>
+          <li class="nav-item dropdown ps-4">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              资源
+            </a>
+            <ul class="dropdown-menu bg-light border-0 pe-0 fixed-menu">
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/zh/community/">
+                  社区
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/zh/contributing/">
+                  贡献
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/zh/user-guides/">
+                  用户指南
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/zh/blog/">博客</a>
+              </li>
+              <li>
+                <a
+                  class="nav-link dropdown-item ps-4"
+                  href="https://labs.sensifia.com"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Laboratory
+                </a>
+              </li>
+              <li>
+                <a
+                  class="nav-link dropdown-item ps-4"
+                  href="https://pactusscan.com/"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Block explorer <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="nav-link dropdown-item ps-4"
+                  href="https://github.com/pactus-project/"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Source code <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="navbar-nav">
+  <div class="nav-item dropdown ps-4 pe-2">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa-solid fa-earth-americas"></i>
+      中文
+    </a>
+    <ul class="dropdown-menu bg-light border-0 pe-0">
+        
+      <li>
+        <a class="nav-link dropdown-item ps-4" href="/learn/transaction/stamping/">English</a>
+      </li>
+         
+      <li>
+        <a class="nav-link dropdown-item ps-4" href="/ar/learn/transaction/stamping/">
+          العربية
+        </a>
+      </li>
+        
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+    <div class="container-md mt-4 mb-4 learn">
+      <div class="row bg-light p-3">
+        <div class="col-lg-3"><nav class="toc sticky-top">
+  <ul class="list-unstyled ps-0">
+    
+    <li class="mb-1">
+      <button
+        class="btn btn-section d-inline-flex align-items-center border-0 collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#blockchain-collapse"
+        aria-expanded="false">
+        Blockchain
+      </button>
+      <div
+        class="collapse "
+        id="blockchain-collapse">
+        <ul class="btn-page list-unstyled fw-normal pb-1 small">
+            
+          <li>
+            <a
+              href="/learn/blockchain/block/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Block
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/account/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Account
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/validator/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Validator
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/state-hash/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              State hash
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/genesis/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Genesis
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/incentive/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Incentive
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/cryptography/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Cryptography
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/address/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Address
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/serialization/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Serialization
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+    
+    <li class="mb-1">
+      <button
+        class="btn btn-section d-inline-flex align-items-center border-0 collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#consensus-collapse"
+        aria-expanded="false">
+        Consensus
+      </button>
+      <div
+        class="collapse "
+        id="consensus-collapse">
+        <ul class="btn-page list-unstyled fw-normal pb-1 small">
+            
+          <li>
+            <a
+              href="/learn/consensus/proof-of-stake/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Proof of Stake
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/protocol/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Protocol
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/specification/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Specification
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/sortition/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Sortition
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/committee/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Committee
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/parameters/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Parameters
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+    
+    <li class="mb-1">
+      <button
+        class="btn btn-section d-inline-flex align-items-center border-0 collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#transactions-collapse"
+        aria-expanded="true">
+        Transactions
+      </button>
+      <div
+        class="collapse show"
+        id="transactions-collapse">
+        <ul class="btn-page list-unstyled fw-normal pb-1 small">
+            
+          <li>
+            <a
+              href="/learn/transaction/stamping/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Stamping Transactions
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/fee/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Transaction fee
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/format/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Transaction format
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/transfer/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Transfer Transaction
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/bond/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Bond Transaction
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/sortition/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Sortition Transaction
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/unbond/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Unbond Transaction
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/withdraw/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Withdraw Transaction
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+    
+    <li class="mb-1">
+      <button
+        class="btn btn-section d-inline-flex align-items-center border-0 collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#smart-contract-collapse"
+        aria-expanded="false">
+        Smart Contract
+      </button>
+      <div
+        class="collapse "
+        id="smart-contract-collapse">
+        <ul class="btn-page list-unstyled fw-normal pb-1 small">
+            
+          <li>
+            <a
+              href="/learn/smart-contract/storage/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Storage as file
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+    
+  </ul>
+</nav>
+</div>
+        <div class="col-lg-9 content"><h1 id="stamping-transactions">Stamping Transactions</h1>
+
+<p>“Stamping a transaction” involves adding a piece of information from a confirmed block to the header of a transaction.
+This links the stamped transaction to the main chain.
+Unlike regular transactions, stamped transactions have a <strong>Time-to-Live (TTL)</strong> interval and remain
+valid only for a specific duration.</p>
+
+<p>The Time-to-Live interval is determined by the <a href="/zh/learn/consensus/parameters">consensus parameters</a>,
+and currently set to 8640 blocks or approximately one day.
+This means that a stamped transaction can only be included in the blockchain within one day from the block it references.
+If it’s not included within this period, it will be considered expired and will need to
+be re-stamped again with a new reference block.
+In Pactus, stamps are represented by the first 4 bytes of a <a href="/zh/learn/blockchain/block#block-hash">block hash</a>.</p>
+
+<p><img src="https://pactus.org/assets/images/pactus_stamped_transaction.png" alt="Stamped transaction" /></p>
+
+<h2 id="long-range-attack">Long-Range attack</h2>
+
+<p>A long-range attack in blockchains occurs when an attacker or group of attackers create an alternative blockchain (fork)
+starting from a point far back in history. They use old private keys with significant past stake,
+build the fork in secret, and try to make it longer than the main chain.
+The aim is to double-spend, censor transactions, or disrupt consensus.</p>
+
+<p><img src="https://pactus.org/assets/images/long-range-attack.png" alt="Long-Range attack" /></p>
+
+<p>Stamped transactions help prevent long-range attacks, as the transactions in the private fork become
+invalid due to incorrect stamps.</p>
+
+<p><img src="https://pactus.org/assets/images/preventing-long-range-attack.png" alt="Preventing Long-Range attack" /></p>
+
+<h2 id="transaction-pool">Transaction Pool</h2>
+
+<p>Stamped transactions have a significant effect on the transaction pool size.
+By having a limited lifetime, stamped transactions prevent the transaction pool from becoming too large.
+This is because the expired transactions cen be removed from the pool.</p>
+ <div class="row edit-bar">
+  <div class="col">
+    <a class="p-2 edit-btn" href="https://github.com/pactus-project/pactus.org/edit/main/website/learn/transaction/stamping/index.md">
+      <i class="fa fa-pen-to-square" aria-hidden="true"></i>
+      编辑本页
+    </a>
+     
+  </div>
+</div>
+</div>
+      </div>
+    </div>
+    <div class="container-md border-top footer anchor">
+  <footer class="container-fluid py-4">
+    <div class="container">
+      <div class="row around-xs footer-wrapper">
+        <div class="col-md-3 col-xs-6">
+          <div class="section">帕克图斯项目</div>
+          <ul class="list-unstyled">
+            <li>
+              <a class="anchor" href="/zh/about/what-is-pactus/">什么是帕克图斯？</a>
+            </li>
+            <li>
+              <a class="anchor" href="/zh/about/roadmap/">路线图</a>
+            </li>
+            <li>
+              <a class="anchor" href="/zh/download/">下载</a>
+            </li>
+            <li>
+              <a href="/zh/learn/">学习</a>
+            </li>
+            <li>
+              <a class="anchor" href="https://pips.pactus.org" target="_blank">PIPs</a>
+            </li>
+            <li>
+              <a class="anchor" href="/zh/about/faq/">常见问题解答</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-xs-6">
+          <div class="section">资源</div>
+          <ul class="list-unstyled">
+            <li>
+              <a class="anchor" href="/zh/community/">社区</a>
+            </li>
+            <li>
+              <a class="anchor" href="/zh/contributing/">贡献</a>
+            </li>
+            <li>
+              <a class="anchor" href="/zh/user-guides/">用户指南</a>
+            </li>
+            <li>
+              <a class="anchor" href="/zh/blog/">博客</a>
+            </li>
+            <li>
+              <a class="anchor" href="https://labs.sensifia.com/" target="_blank" rel="noopener noreferrer">
+                Laboratory
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://www.pactusscan.com/" target="_blank" rel="noopener noreferrer">
+                Block explorer <i class="fa fa-external-link" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://github.com/pactus-project/" target="_blank" rel="noopener noreferrer">
+                Source code <i class="fa fa-external-link" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-xs-6">
+          <div class="section">社区</div>
+          <ul class="list-unstyled">
+            <li>
+              <a class="anchor" href="https://discord.gg/H5vZkNnXCu">
+                <i class="fa-brands fa-fw fa-discord"></i>
+                帕克图斯在 Discord 上
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://twitter.com/pactuschain/">
+                <i class="fa-brands fa-fw fa-twitter"></i>
+                帕克图斯在 Twitter 上
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://instagram.com/pactus.blockchain/">
+                <i class="fa-brands fa-fw fa-instagram"></i>
+                帕克图斯在 Instagram 上
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://t.me/pactusblockchain">
+                <i class="fa-brands fa-fw fa-telegram"></i>
+                帕克图斯在 Telegram 上
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://linkedin.com/company/pactus-blockchain">
+                <i class="fa-brands fa-fw fa-linkedin"></i>
+                帕克图斯在 LinkedIn 上
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-xs-6">
+          <ul class="list-unstyled">
+            <li>
+              <img alt="Pactus" src="https://pactus.org/assets/images/logos/text_logo.png" />
+            </li>
+
+            <li>
+              <a class="anchor" href="https://goo.gl/maps/aYMYxy6pWJzAtxf56">
+                <i class="fa-solid fa-map"></i>
+                Dammstrasse 16, 6300 Zug, Switzerland
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="mailto:admin@pactus.org">
+                <i class="fa-solid fa-envelope"></i>
+                admin@pactus.org
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="tel:+41767011335">
+                <i class="fa-solid fa-phone"></i>
+                +41 76 701 13 35
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+    <script>
+      anchors.add();
+    </script>
+  </body>
+</html>

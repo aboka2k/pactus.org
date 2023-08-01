@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ar">
+  
+
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4BTY819M6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-Q4BTY819M6");
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Storage as file | بلوكشين بكتوس</title>
+  <meta name="description" content="" />
+
+  <meta property="og:title" content="Storage as file | بلوكشين بكتوس" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="بلوكشين بكتوس" />
+  <meta property="og:url" content="https://pactus.org//learn/smart-contract/storage/" />
+  <meta property="og:type" content="website" />
+
+  <link rel="shortcut icon" href="https://pactus.org/assets/images/logos/208_circle.png" type="image/png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="https://pactus.org/assets/images/logos/128_circle.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="https://pactus.org/assets/images/logos/64_circle.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pactus.org/assets/images/logos/32_circle.png" />
+
+  <link href="https://pactus.org/assets/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <link href="https://pactus.org/assets/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  
+
+  <link href="https://pactus.org/assets/css/native.css" rel="stylesheet" />
+  <link href="/assets/css/fontawesome.min.css" rel="stylesheet" />
+  <link href="https://pactus.org/assets/css/custom.css" rel="stylesheet" />
+
+  <script src="https://pactus.org/assets/js/jquery-3.6.1.min.js"></script>
+  <script src="https://pactus.org/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="https://pactus.org/assets/js/anchor.min.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://pactus.org/assets/js/custom.js"></script>
+</head>
+
+
+  <body>
+    <div class="container-md px-0">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand logo p-3" href="/ar/">
+        <img src="https://pactus.org/assets/images/logos/text_logo.png" alt="Pactus blockchain" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="topnav navbar-nav" style="margin-right: auto !important">
+          <li class="nav-item dropdown ps-4">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              حول
+            </a>
+            <ul class="dropdown-menu bg-light border-0 pe-0 fixed-menu">
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/ar/about/what-is-pactus/">
+                  ما هو بكتوس؟
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/ar/about/roadmap/">
+                  خارطة الطريق
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/ar/about/faq/">الأسئلة المتكررة</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item ps-4">
+            <a class="nav-link" href="/ar/learn/">تعلم</a>
+          </li>
+          <li class="nav-item ps-4">
+            <a class="nav-link" href="/ar/download/">تنزيل</a>
+          </li>
+          <li class="nav-item ps-4">
+            <a class="nav-link" href="https://pips.pactus.org" target="_blank">PIPs</a>
+          </li>
+          <li class="nav-item dropdown ps-4">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              الموارد
+            </a>
+            <ul class="dropdown-menu bg-light border-0 pe-0 fixed-menu">
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/ar/community/">
+                  المجتمع
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/ar/contributing/">
+                  المساهمة
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/ar/user-guides/">
+                  دلائل المستخدم
+                </a>
+              </li>
+              <li>
+                <a class="nav-link dropdown-item ps-4" href="/ar/blog/">مدونة</a>
+              </li>
+              <li>
+                <a
+                  class="nav-link dropdown-item ps-4"
+                  href="https://labs.sensifia.com"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Laboratory
+                </a>
+              </li>
+              <li>
+                <a
+                  class="nav-link dropdown-item ps-4"
+                  href="https://pactusscan.com/"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Block explorer <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="nav-link dropdown-item ps-4"
+                  href="https://github.com/pactus-project/"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Source code <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="navbar-nav">
+  <div class="nav-item dropdown ps-4 pe-2">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa-solid fa-earth-americas"></i>
+      العربية
+    </a>
+    <ul class="dropdown-menu bg-light border-0 pe-0">
+        
+      <li>
+        <a class="nav-link dropdown-item ps-4" href="/learn/smart-contract/storage/">English</a>
+      </li>
+          
+      <li>
+        <a class="nav-link dropdown-item ps-4" href="/zh/learn/smart-contract/storage/">
+          中文
+        </a>
+      </li>
+       
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+    <div class="container-md mt-4 mb-4 learn">
+      <div class="row bg-light p-3">
+        <div class="col-lg-3"><nav class="toc sticky-top">
+  <ul class="list-unstyled ps-0">
+    
+    <li class="mb-1">
+      <button
+        class="btn btn-section d-inline-flex align-items-center border-0 collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#blockchain-collapse"
+        aria-expanded="false">
+        Blockchain
+      </button>
+      <div
+        class="collapse "
+        id="blockchain-collapse">
+        <ul class="btn-page list-unstyled fw-normal pb-1 small">
+            
+          <li>
+            <a
+              href="/learn/blockchain/block/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Block
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/account/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Account
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/validator/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Validator
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/state-hash/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              State hash
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/genesis/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Genesis
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/incentive/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Incentive
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/cryptography/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Cryptography
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/address/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Address
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/blockchain/serialization/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Serialization
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+    
+    <li class="mb-1">
+      <button
+        class="btn btn-section d-inline-flex align-items-center border-0 collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#consensus-collapse"
+        aria-expanded="false">
+        Consensus
+      </button>
+      <div
+        class="collapse "
+        id="consensus-collapse">
+        <ul class="btn-page list-unstyled fw-normal pb-1 small">
+            
+          <li>
+            <a
+              href="/learn/consensus/proof-of-stake/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Proof of Stake
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/protocol/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Protocol
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/specification/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Specification
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/sortition/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Sortition
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/committee/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Committee
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/consensus/parameters/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Parameters
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+    
+    <li class="mb-1">
+      <button
+        class="btn btn-section d-inline-flex align-items-center border-0 collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#transactions-collapse"
+        aria-expanded="false">
+        Transactions
+      </button>
+      <div
+        class="collapse "
+        id="transactions-collapse">
+        <ul class="btn-page list-unstyled fw-normal pb-1 small">
+            
+          <li>
+            <a
+              href="/learn/transaction/stamping/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Stamping Transactions
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/fee/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Transaction fee
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/format/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Transaction format
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/transfer/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Transfer Transaction
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/bond/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Bond Transaction
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/sortition/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Sortition Transaction
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/unbond/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Unbond Transaction
+            </a>
+          </li>
+            
+          <li>
+            <a
+              href="/learn/transaction/withdraw/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Withdraw Transaction
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+    
+    <li class="mb-1">
+      <button
+        class="btn btn-section d-inline-flex align-items-center border-0 collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#smart-contract-collapse"
+        aria-expanded="true">
+        Smart Contract
+      </button>
+      <div
+        class="collapse show"
+        id="smart-contract-collapse">
+        <ul class="btn-page list-unstyled fw-normal pb-1 small">
+            
+          <li>
+            <a
+              href="/learn/smart-contract/storage/"
+              class="link-dark d-inline-flex text-decoration-none  ">
+              Storage as file
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+    
+  </ul>
+</nav>
+</div>
+        <div class="col-lg-9 content"><h1 id="storage-as-file">Storage as file</h1>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>Ethereum friendly blockchains keep storage in a separate key/value database per request. This has
+some drawbacks:</p>
+
+<ul>
+  <li>Since there is a global database that stores all storages, the storage key is a combination of
+\(Key_{contract} + Key_{item}\) that is a bit messy.</li>
+  <li>Storage data can’t have any meta data, because they are scattered in different places in the
+key/value database.</li>
+  <li>Storages per smart contract can’t be Merklized. Ethereum came with another solution to calculate
+the hash of the whole storage. They defined a hexary Patricia tree that is quite
+<a href="https://twitter.com/VitalikButerin/status/1239359499963695106">suboptimal</a>.</li>
+</ul>
+
+<p>Here we discuss how we can address the above issues by dedicating a separate file as <strong>Storage
+File</strong> per smart contract. In this scenario, users should purchase the storage file with required
+capacity before deploying the smart contract. Once the purchase is done, a separate empty file will
+be created and dedicated for the user. The size of the file is the same as the purchase size. For
+example users can purchase 10 MB or 120 MB of storage files depending on their need and renew them
+yearly.</p>
+
+<h2 id="structure">Structure</h2>
+
+<p>Each storage file has three parts: Header, ByteCodes and contract storage.</p>
+
+<p><img src="https://pactus.org/assets/images/pactus_storage_file_structure.png" alt="Storage file structure" /></p>
+
+<p>The Header of the storage file keeps some meta data like storage file index, last payment time,
+total storage size, etc. In the ByteCodes section the byte codes of the smart contract will be saved
+and in the storage section, the actual storage of the smart contract will be stored.</p>
+
+<h2 id="storage-apis">Storage APIs</h2>
+
+<p>Smart contracts can only change data in storage sections. To achieve that the smart contract
+executer (virtual machine) should introduce these APIs:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cd">/// This API requests the host to read the slice of `data` from the storage file</span>
+<span class="cd">/// at the given `offset`.</span>
+<span class="k">fn</span> <span class="nf">read</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">u32</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="p">[</span><span class="nb">u8</span><span class="p">])</span> <span class="k">-&gt;</span> <span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span> <span class="n">HostError</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="cd">/// This API requests the host to write the slice of `data` into the storage file</span>
+<span class="cd">/// at the given `offset`</span>
+<span class="k">fn</span> <span class="nf">write</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">u32</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="o">&amp;</span><span class="p">[</span><span class="nb">u8</span><span class="p">])</span> <span class="k">-&gt;</span> <span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span> <span class="n">HostError</span><span class="o">&gt;</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>These APIs are similar to <code class="language-plaintext highlighter-rouge">SLoad</code> and <code class="language-plaintext highlighter-rouge">SStore</code> opcodes in Ethereum Virtual Machine (EVM). But
+instead of key and value, they accept offset and data parameters.</p>
+
+<h2 id="storage-allocation">Storage Allocation</h2>
+
+<p>In order to allocate storage space safely and efficiently user can use these predefined methods:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cd">/// Allocates storage space with the specific `length` and returns the</span>
+<span class="cd">/// offset of allocated space in the storage file.</span>
+<span class="k">pub</span> <span class="k">fn</span> <span class="nf">allocate</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">u32</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Result</span><span class="o">&lt;</span><span class="n">Offset</span><span class="p">,</span> <span class="n">Error</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="cd">/// Deallocates the storage space at the specific `offset` and `length`</span>
+<span class="k">pub</span> <span class="k">fn</span> <span class="nf">deallocate</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">Offset</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">u32</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span> <span class="n">Error</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="storage-stack">Storage Stack</h2>
+
+<p>There is a fixed stack with 32 elements at the beginning of the storage . The first item in this
+stack is reserved and used for managing deallocated storage spaces. Users can use other stack items
+to keep the offset of the allocated spaces for the smart contract variables.</p>
+
+<p><img src="https://pactus.org/assets/images/pactus_storage_stack.png" alt="Storage stack" /></p>
+
+<h2 id="data-collections">Data collections</h2>
+
+<p>Usually in smart contracts developers are interested in data collections like Search Trees or Hash
+Tables to look up values by the associated keys. Most programming languages come up with some
+builtin collections, however we can’t use them in smart contracts because they use RAM that is
+inconsistent. However we can have storage equivalent of these data collections that instead of
+dealing with memory they are dealing with the storage file. You can naively consider storage as
+dedicated consistent memory for the smart contract.</p>
+
+<p>Right now these data collection is available to use inside the smart contract: <code class="language-plaintext highlighter-rouge">StorageVector</code>,
+<code class="language-plaintext highlighter-rouge">StorageString</code>, <code class="language-plaintext highlighter-rouge">StorageLinkedList</code>, <code class="language-plaintext highlighter-rouge">StorageBST</code> and <code class="language-plaintext highlighter-rouge">StorageHasTable</code>.</p>
+
+<!-- <TODO: link to docs.rs> -->
+
+<h2 id="merklizing-storage">Merklizing Storage</h2>
+
+<p>To make sure all the nodes have the same state we need to calculate the hash of all storage files.
+Merkle tree can help us to easily calculate the root hash very fast. We need two Merkle trees, one
+for calculating the root hash of each storage file and the second for calculating the root hash of
+all storage files.</p>
+
+<h3 id="single-storage-file-merkle-tree">Single storage file Merkle tree</h3>
+
+<p>We can divide each file into small chunks of data and calculate the hash of each chunk once. Since
+we know exactly which chunk has changed after executing the smart, contract we can easily
+reconstruct the tree and calculate the merkle root again.</p>
+
+<h3 id="whole-storage-merkle-tree">Whole storage Merkle tree</h3>
+
+<p>Each file has a unique index. With using that index we can make sure that the position of the leaf
+nodes in the Merkle tree is always the same. The same technique we used for calculating the
+<a href="/ar/learn/blockchain/state-hash">state hash</a>.</p>
+
+<p><img src="https://pactus.org/assets/images/pactus_storage_merkle_tree.png" alt="Storage Merkle tree" /></p>
+
+<h2 id="example">Example</h2>
+
+<p>As an example we have implemented the ERC20 smart contract based on this idea. The implementation
+can be found <a href="https://github.com/pactus-project/kelk/tree/main/examples/erc20">here</a></p>
+
+<h2 id="testing">Testing</h2>
+
+<p>One of the consequences of Storage as File is that testing smart contracts becomes easier. What we
+need is only to mock the storage file.</p>
+ <div class="row edit-bar">
+  <div class="col">
+    <a class="p-2 edit-btn" href="https://github.com/pactus-project/pactus.org/edit/main/website/learn/smart-contract/storage/index.md">
+      <i class="fa fa-pen-to-square" aria-hidden="true"></i>
+      عدل هذه الصفحة
+    </a>
+     
+  </div>
+</div>
+</div>
+      </div>
+    </div>
+    <div class="container-md border-top footer anchor">
+  <footer class="container-fluid py-4">
+    <div class="container">
+      <div class="row around-xs footer-wrapper">
+        <div class="col-md-3 col-xs-6">
+          <div class="section">مشروع بكتوس</div>
+          <ul class="list-unstyled">
+            <li>
+              <a class="anchor" href="/ar/about/what-is-pactus/">ما هو بكتوس؟</a>
+            </li>
+            <li>
+              <a class="anchor" href="/ar/about/roadmap/">خارطة الطريق</a>
+            </li>
+            <li>
+              <a class="anchor" href="/ar/download/">تنزيل</a>
+            </li>
+            <li>
+              <a href="/ar/learn/">تعلم</a>
+            </li>
+            <li>
+              <a class="anchor" href="https://pips.pactus.org" target="_blank">PIPs</a>
+            </li>
+            <li>
+              <a class="anchor" href="/ar/about/faq/">الأسئلة المتكررة</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-xs-6">
+          <div class="section">الموارد</div>
+          <ul class="list-unstyled">
+            <li>
+              <a class="anchor" href="/ar/community/">المجتمع</a>
+            </li>
+            <li>
+              <a class="anchor" href="/ar/contributing/">المساهمة</a>
+            </li>
+            <li>
+              <a class="anchor" href="/ar/user-guides/">دلائل المستخدم</a>
+            </li>
+            <li>
+              <a class="anchor" href="/ar/blog/">مدونة</a>
+            </li>
+            <li>
+              <a class="anchor" href="https://labs.sensifia.com/" target="_blank" rel="noopener noreferrer">
+                Laboratory
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://www.pactusscan.com/" target="_blank" rel="noopener noreferrer">
+                Block explorer <i class="fa fa-external-link" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://github.com/pactus-project/" target="_blank" rel="noopener noreferrer">
+                Source code <i class="fa fa-external-link" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-xs-6">
+          <div class="section">المجتمع</div>
+          <ul class="list-unstyled">
+            <li>
+              <a class="anchor" href="https://discord.gg/H5vZkNnXCu">
+                <i class="fa-brands fa-fw fa-discord"></i>
+                بكتوس على ديسكورد
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://twitter.com/pactuschain/">
+                <i class="fa-brands fa-fw fa-twitter"></i>
+                بكتوس على تويتر
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://instagram.com/pactus.blockchain/">
+                <i class="fa-brands fa-fw fa-instagram"></i>
+                بكتوس على إنستاجرام
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://t.me/pactusblockchain">
+                <i class="fa-brands fa-fw fa-telegram"></i>
+                بكتوس على تيليجرام
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="https://linkedin.com/company/pactus-blockchain">
+                <i class="fa-brands fa-fw fa-linkedin"></i>
+                بكتوس على لينكدإن
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-xs-6">
+          <ul class="list-unstyled">
+            <li>
+              <img alt="Pactus" src="https://pactus.org/assets/images/logos/text_logo.png" />
+            </li>
+
+            <li>
+              <a class="anchor" href="https://goo.gl/maps/aYMYxy6pWJzAtxf56">
+                <i class="fa-solid fa-map"></i>
+                Dammstrasse 16, 6300 Zug, Switzerland
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="mailto:admin@pactus.org">
+                <i class="fa-solid fa-envelope"></i>
+                admin@pactus.org
+              </a>
+            </li>
+            <li>
+              <a class="anchor" href="tel:+41767011335">
+                <i class="fa-solid fa-phone"></i>
+                +41 76 701 13 35
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+    <script>
+      anchors.add();
+    </script>
+  </body>
+</html>

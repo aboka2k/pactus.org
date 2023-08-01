@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://pactus.org/feed.xml" rel="self" type="application/atom+xml" /><link href="https://pactus.org/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-08-01T09:20:13+00:00</updated><id>https://pactus.org/feed.xml</id><title type="html">Pactus blockchain</title><entry><title type="html">Story of Testnet-1</title><link href="https://pactus.org/2023/08/01/testnet-1-concluded.html" rel="alternate" type="text/html" title="Story of Testnet-1" /><published>2023-08-01T00:00:00+00:00</published><updated>2023-08-01T00:00:00+00:00</updated><id>https://pactus.org/2023/08/01/testnet-1-concluded</id><content type="html" xml:base="https://pactus.org/2023/08/01/testnet-1-concluded.html"><![CDATA[<h2 id="about-testnet">About testnet</h2>
+
+<p>Testnet is a testing environment where developers and users can try out the functionality of a blockchain project,
+without putting real assets or data at risk.
+It helps to ensure that the final product is reliable and secure for users to use.
+If you like to read more about the Testnet you can check out our post on
+“<a href="/2023/03/01/what-is-testnet.html">What is Testnet?</a>”.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>In May 2023, we <a href="/2023/05/09/testnet-1-launched.html">launched</a> our second Testnet.
+The main purpose of this Testnet was to measure block time creation and the responsiveness of the blockchain.
+The development team also focused on evaluating the network’s performance.
+Additionally, the overall performance of the software and the syncing process were closely examined and assessed.</p>
+
+<p>The <a href="/learn/consensus/committee/">committee</a> for Testnet-1 was set to 21 validators,
+and 584 validators <a href="/2023/07/05/testnet-500-validators.html">joined</a> during the Testnet period.
+More than 600,000 blocks were created, and more than 1 million transactions were processed during this time.
+The size of the blockchain is about 300 megabytes.</p>
+
+<p>About 300,000 coins were staked during this period, it was almost 50% of the total generated coins.
+It shows that users, even in Testnet, tend to stake their coins.</p>
+
+<p><img src="https://pactus.org/blog/images/2023-07-25-testnet-1-concluded/staked_coins.png" alt="Staking chart" /></p>
+
+<p>We were able to extract the confirmation time of transactions using transaction
+<a href="/learn/transaction/stamping/">stamps</a>.
+More than 97% of transactions were confirmed in just one block after submission.
+This indicates that the transaction pool and broadcasting models are working fine.</p>
+
+<p><img src="https://pactus.org/blog/images/2023-07-25-testnet-1-concluded/transaction_confirmation.png" alt="Transaction confirmation chart" /></p>
+
+<p>Based on logs from one of the validators, the time for creating a block is about 3 seconds in normal cases.
+More than 97% of blocks are committed in the first rounds.</p>
+
+<p><img src="https://pactus.org/blog/images/2023-07-25-testnet-1-concluded/consensus_round.png" alt="Consensus round chart" /></p>
+
+<p>During Testnet-1, we released three versions(Version
+<a href="https://pactus.org/2023/05/29/release-0-11-0.html">0.11.0</a>,
+<a href="https://pactus.org/2023/06/19/release-0-12-0.html">0.12.0</a>,
+<a href="https://pactus.org/2023/07/01/release-0-13-0.html">0.13.0</a>), and the upgrade process was smooth.
+At this time, the development team decided to stop Testnet-1 and work on improvements that are not backward compatible,
+including:</p>
+
+<ul>
+  <li>Improving the consensus protocol</li>
+  <li>Reducing the blockchain size</li>
+  <li>Optimizing the network usage</li>
+</ul>
+
+<p>After stabilizing the changes, we will announce the next Testnet, and hopefully, this will be the pre-launch Testnet.</p>
+
+<h2 id="spacial-thanks-to-the-community">Spacial thanks to the community</h2>
+
+<p>This Testnet was important for us.
+It helped us learn what we need to do to make Pactus work even better.
+Without the community that supports us and dedicates their time and resources to testing and feedback,
+we wouldn’t have been able to progress as we have.</p>
+
+<p>we thank all of them for their valuable contributions.
+As promised, <strong>participants in Testnets will be given priority as validators for the MainNet</strong>, and
+will receive bounty tokens from the bootstrap accounts to set up their validator.</p>
+
+<p>We are grateful to all those who participated in Testnet-1, and
+we encourage them to join our next Testnet to help us improve Pactus.
+As a community-based project, we rely on the support of our community members, and we value any help we receive.</p>]]></content><author><name></name></author><category term="announcement," /><category term="testnet" /><summary type="html"><![CDATA[About testnet]]></summary></entry><entry><title type="html">Dev meeting</title><link href="https://pactus.org/2023/07/09/dev-meeting.html" rel="alternate" type="text/html" title="Dev meeting" /><published>2023-07-09T00:00:00+00:00</published><updated>2023-07-09T00:00:00+00:00</updated><id>https://pactus.org/2023/07/09/dev-meeting</id><content type="html" xml:base="https://pactus.org/2023/07/09/dev-meeting.html"><![CDATA[<h2 id="meeting-summary">Meeting Summary</h2>
+
+<p>The meeting took place on 09 July 2023, at 2:00 PM UTC via Google Meet,
+with team members from different time zones joining to discuss key aspects of the Pactus project.</p>
+
+<h2 id="overview-to-the-network-module">Overview to the Network Module</h2>
+
+<p>The meeting began with an overview of the Network module in Pactus.
+This module uses <a href="https://libp2p.io/">Libp2p</a> as its underlying network protocol.</p>
+
+<p>The Network module is agnostic about the content of the message and
+handles two types of messages: Gossip messages, which are broadcasted,
+and Stream messages, which are sent directly to a specific peer.
+The team discussed the relay nodes that enable communication for nodes behind NAT.
+Upon receiving a message, the module publishes an event.
+The two types of events are Gossip events and Steam events.</p>
+
+<p><img src="/blog/images/2023-07-09-dev-meeting/network_messages.png" alt="Network messages" /></p>
+
+<p>The team discussed the issue of Relay connections resetting, and explored solutions such as
+<a href="https://docs.libp2p.io/concepts/nat/hole-punching/">hole punching</a> or using UDP and IPv6.</p>
+
+<p>Some users in the Testnet reported high network usage.
+The team discussed implementing metrics for LibP2P to monitor network usage effectively.
+The discussion related to this issue can be found <a href="https://github.com/pactus-project/pactus/discussions/571">here</a>.
+Additionally, the team discussed the customization of network resources,
+including setting limits for inbound and outbound connections.</p>
+
+<h2 id="overview-to-the-sync-module">Overview to the Sync Module</h2>
+
+<p>Moving on, the Sync module was discussed.
+Unlike the Network module, the Sync module has full knowledge about the messages and packets.
+The module handles a range of message types, which can be found
+<a href="https://github.com/pactus-project/pactus/blob/239bb98120053a220c6732989d9a4541ff0c4fc9/sync/bundle/message/message.go#L41C1-L52C2">here</a>.</p>
+
+<p>It was suggested that we need to define metrics for each message type.
+There was also a discussion about the need for reducing the messages to optimize the use of network resources.</p>
+
+<p>The team decided to continue discussing these topics in future meetings.
+They also plan to work on improving the Network and Sync modules based on these discussions.</p>]]></content><author><name></name></author><category term="dev-meeting" /><summary type="html"><![CDATA[Meeting Summary]]></summary></entry><entry><title type="html">500 validators joined Testnet</title><link href="https://pactus.org/2023/07/05/testnet-500-validators.html" rel="alternate" type="text/html" title="500 validators joined Testnet" /><published>2023-07-05T00:00:00+00:00</published><updated>2023-07-05T00:00:00+00:00</updated><id>https://pactus.org/2023/07/05/testnet-500-validators</id><content type="html" xml:base="https://pactus.org/2023/07/05/testnet-500-validators.html"><![CDATA[<p>For a <a href="/learn/consensus/proof-of-stake/">Proof of Stake</a> blockchain, validators are important for
+maintaining the network’s integrity and security. They are similar to miners in Proof of Work blockchains like Bitcoin.</p>
+
+<p>Pactus as a real Proof of Stake blockchain, has achieved a significant milestone.
+More than 500 validators joined the <a href="/2023/05/09/testnet-1-launched.html">Testnet</a>
+in less than 2 months.
+This accomplishment proves that Pactus is reliable, resilient, and trustworthy. More importantly, it sets new standards
+in the blockchain world. In fact, <strong>the Pactus Testnet is even more decentralized than some well-known blockchains.</strong></p>
+
+<p><img src="https://pactus.org/blog/images/2023-07-05-testnet-500-validators/500_validators.png" alt="500 validators of testnet" /></p>
+
+<p>One key reason why Pactus can accommodate more validators is its powerful
+<a href="/learn/consensus/protocol/">consensus mechanism</a>.
+The consensus mechanism in Pactus eliminates the need for delegation, making it possible for anyone to become a validator.
+Additionally, the user-friendly application ensures that even those new to blockchain can easily contribute to the network.</p>
+
+<h2 id="what-is-the-next">What is the next</h2>
+
+<p><strong>To remain competitive in the market, Pactus recognizes the importance of prioritizing user space.</strong>
+We aim to ensure that running Pactus is affordable and accessible to anyone, regardless of their technical expertise or
+available resources.</p>
+
+<p>To achieve this, the Pactus team constantly monitors network, storage, and computational usage, striving to keep them
+at minimal levels.
+By doing so, we enable more individuals to participate in the Pactus blockchain.</p>
+
+<p>Currently, the Pactus team is working on optimizing and reducing network usage. This effort will lead to reduced costs,
+especially for users who are using home internet connections.</p>
+
+<p>Furthermore, we are planning to introduce a pruning mode, allowing users to run the Pactus blockchain with significantly
+less storage.
+Although we believe the storage size is already small, our goal is to enable users to
+retain only the most recent blockchain history.
+This approach ensures that the blockchain size remains as compact as possible by disregarding some history of the blockchain.</p>]]></content><author><name></name></author><category term="validators," /><category term="testnet" /><summary type="html"><![CDATA[For a Proof of Stake blockchain, validators are important for maintaining the network’s integrity and security. They are similar to miners in Proof of Work blockchains like Bitcoin.]]></summary></entry><entry><title type="html">Pactus 0.13.0 released</title><link href="https://pactus.org/2023/07/01/release-0-13-0.html" rel="alternate" type="text/html" title="Pactus 0.13.0 released" /><published>2023-07-01T00:00:00+00:00</published><updated>2023-07-01T00:00:00+00:00</updated><id>https://pactus.org/2023/07/01/release-0-13-0</id><content type="html" xml:base="https://pactus.org/2023/07/01/release-0-13-0.html"><![CDATA[<h2 id="overview">Overview</h2>
+
+<p>Pactus Blockchain <a href="https://github.com/pactus-project/pactus/releases/tag/v0.13.0">Version 0.13.0</a>
+is now available for download.
+This release includes a graphical user interface (GUI) that
+is suitable for both beginners and experienced users.
+It also includes a command-line interface (CLI) for advanced users and wallet software
+that allows users to interact with the blockchain without the need to sync the entire blockchain.</p>
+
+<h2 id="highlights">Highlights</h2>
+
+<p>Users can now restore the <code class="language-plaintext highlighter-rouge">default_wallet</code> during the node initialization.
+If users have a backup of the seed phrase (mnemonic) for the <code class="language-plaintext highlighter-rouge">default_wallet</code>,
+they can now restore it and re-initialize the node.</p>
+
+<p><img src="https://pactus.org/blog/images/2023-07-01-release-0-13-0/restore-mode.png" alt="Restore mode" /></p>
+
+<h2 id="download">Download</h2>
+
+<p>This version has been implemented for <a href="https://pactus.org/2023/05/09/testnet-1-launched.html">Testnet-1</a> and
+is being prepared for the upcoming Mainnet launch.
+To start using Pactus Blockchain Testnet-1, download the latest version from the
+<a href="/download">download</a> page and join the Testnet.</p>
+
+<p>These guides can help you to run and configure your node:</p>
+
+<ul>
+  <li><a href="/user-guides/run-pactus-gui">How to run Pactus in graphic mode?</a></li>
+  <li><a href="/user-guides/run-pactus-cli">How to run Pactus in command line mode?</a></li>
+  <li><a href="/user-guides/run-pactus-docker">How to run Pactus using Docker?</a></li>
+</ul>
+
+<h2 id="how-to-upgrade">How to Upgrade</h2>
+
+<p>If you are running an older version, shut it down.
+Uninstall the previous version and install the newer version.
+If you are using the archived version, simply use the new version.</p>
+
+<h2 id="change-log">Change log</h2>
+
+<p>This version includes several changes and improvements, such as:</p>
+
+<h3 id="fix">Fix</h3>
+
+<ul>
+  <li>implemented restore wallet base on input seed (<a href="https://github.com/pactus-project/pactus/pull/553">#553</a>)</li>
+  <li>measuring total sent and received bytes (<a href="https://github.com/pactus-project/pactus/pull/552">#552</a>)</li>
+  <li>add validate seed and restore wallet (<a href="https://github.com/pactus-project/pactus/pull/533">#533</a>)</li>
+  <li><strong>HTTP</strong>: Missing handlers (<a href="https://github.com/pactus-project/pactus/pull/549">#549</a>)</li>
+  <li><strong>gui</strong>: update about dialog and menu items in help (<a href="https://github.com/pactus-project/pactus/pull/532">#532</a>)</li>
+</ul>
+
+<h3 id="refactor">Refactor</h3>
+
+<ul>
+  <li>implementing TestSuite (<a href="https://github.com/pactus-project/pactus/pull/535">#535</a>)</li>
+</ul>
+
+<p>You can find the <a href="https://github.com/pactus-project/pactus/compare/v0.12.0...v0.13.0">full list of changes on Github</a>,
+as well as the <a href="https://github.com/pactus-project/pactus/releases/tag/v0.13.0">source code</a></p>]]></content><author><name></name></author><category term="announcement," /><category term="release," /><category term="testnet" /><summary type="html"><![CDATA[Overview]]></summary></entry><entry><title type="html">Pactus 0.12.0 released</title><link href="https://pactus.org/2023/06/19/release-0-12-0.html" rel="alternate" type="text/html" title="Pactus 0.12.0 released" /><published>2023-06-19T00:00:00+00:00</published><updated>2023-06-19T00:00:00+00:00</updated><id>https://pactus.org/2023/06/19/release-0-12-0</id><content type="html" xml:base="https://pactus.org/2023/06/19/release-0-12-0.html"><![CDATA[<h2 id="overview">Overview</h2>
+
+<p>Pactus Blockchain <a href="https://github.com/pactus-project/pactus/releases/tag/v0.12.0">Version 0.12.0</a>
+is now available for download.
+This release includes a graphical user interface (GUI) that
+is suitable for both beginners and experienced users.
+It also includes a command-line interface (CLI) for advanced users and wallet software
+that allows users to interact with the blockchain without the need to sync the entire blockchain.</p>
+
+<h2 id="highlights">Highlights</h2>
+
+<p>This version is focused on improving the sync time to make it faster.
+This is achieved by implementing a caching mechanism that executes transactions more quickly and
+improves the calculation of total power (stake) of the blockchain in a more effective way.</p>
+
+<p><img src="https://pactus.org/blog/images/2023-06-19-release-0-12-0/syncing-progress.png" alt="Syncing progress" /></p>
+
+<h2 id="download">Download</h2>
+
+<p>This version has been implemented for <a href="https://pactus.org/2023/05/09/testnet-1-launched.html">Testnet-1</a> and
+is being prepared for the upcoming Mainnet launch.
+To start using Pactus Blockchain Testnet-1, download the latest version from the
+<a href="/download">download</a> page and join the Testnet.</p>
+
+<p>These guides can help you to run and configure your node:</p>
+
+<ul>
+  <li><a href="/user-guides/run-pactus-gui">How to run Pactus in graphic mode?</a></li>
+  <li><a href="/user-guides/run-pactus-cli">How to run Pactus in command line mode?</a></li>
+  <li><a href="/user-guides/run-pactus-docker">How to run Pactus using Docker?</a></li>
+</ul>
+
+<h2 id="how-to-upgrade">How to Upgrade</h2>
+
+<p>If you are running an older version, shut it down.
+Uninstall the previous version and install the newer version.
+If you are using the archived version, simply use the new version.</p>
+
+<h2 id="change-log">Change log</h2>
+
+<p>This version includes several changes and improvements, such as:</p>
+
+<h3 id="feat">Feat</h3>
+
+<ul>
+  <li>add GetAccountByNumber API to get account by number (<a href="https://github.com/pactus-project/pactus/pull/511">#511</a>)</li>
+</ul>
+
+<h3 id="fix">Fix</h3>
+
+<ul>
+  <li>caching account and validator in store (<a href="https://github.com/pactus-project/pactus/pull/513">#513</a>)</li>
+  <li>get recent blocks by stamp (<a href="https://github.com/pactus-project/pactus/pull/509">#509</a>)</li>
+  <li>closing the mDNS connection upon stopping the network (<a href="https://github.com/pactus-project/pactus/pull/508">#508</a>)</li>
+  <li>updating linkedmap to use generic (<a href="https://github.com/pactus-project/pactus/pull/507">#507</a>)</li>
+  <li>removing state from cache (<a href="https://github.com/pactus-project/pactus/pull/506">#506</a>)</li>
+  <li>Typo in GUI (<a href="https://github.com/pactus-project/pactus/pull/499">#499</a>)</li>
+  <li>supporting localnet (<a href="https://github.com/pactus-project/pactus/pull/492">#492</a>)</li>
+</ul>
+
+<h3 id="refactor">Refactor</h3>
+
+<ul>
+  <li>update total power calculation based on power change(deltas) (<a href="https://github.com/pactus-project/pactus/pull/518">#518</a>)</li>
+  <li>GetValidators return all validators in state validators map (<a href="https://github.com/pactus-project/pactus/pull/512">#512</a>)</li>
+</ul>
+
+<p>You can find the <a href="https://github.com/pactus-project/pactus/compare/v0.11.0...v0.12.0">full list of changes on Github</a>,
+as well as the <a href="https://github.com/pactus-project/pactus/releases/tag/v0.12.0">source code</a></p>]]></content><author><name></name></author><category term="announcement," /><category term="release," /><category term="testnet" /><summary type="html"><![CDATA[Overview]]></summary></entry><entry><title type="html">Pactus 0.11.0 released</title><link href="https://pactus.org/2023/05/29/release-0-11-0.html" rel="alternate" type="text/html" title="Pactus 0.11.0 released" /><published>2023-05-29T00:00:00+00:00</published><updated>2023-05-29T00:00:00+00:00</updated><id>https://pactus.org/2023/05/29/release-0-11-0</id><content type="html" xml:base="https://pactus.org/2023/05/29/release-0-11-0.html"><![CDATA[<h2 id="overview">Overview</h2>
+
+<p>Pactus Blockchain <a href="https://github.com/pactus-project/pactus/releases/tag/v0.11.0">Version 0.11.0</a>
+is now available for download.
+This release includes a graphical user interface (GUI) that
+is suitable for both beginners and experienced users.
+It also includes a command-line interface (CLI) for advanced users and wallet software
+that allows users to interact with the blockchain without the need to sync the entire blockchain.</p>
+
+<h2 id="highlights">Highlights</h2>
+
+<p>The main update in this version is the fix for the <a href="https://docs.libp2p.io/concepts/nat/circuit-relay/">relay</a>
+connection issue.
+A relay is a peer in the network that facilitates the connection between two peers,
+particularly when they are using home internet.</p>
+
+<p>Another significant update is that sending a <a href="/learn/transaction/bond/">Bond transaction</a>
+is now more user-friendly.
+Users no longer need to set the validator public key if they want to bond Test PAC coins to their validators.</p>
+
+<p><img src="https://pactus.org/blog/images/2023-05-29-release-0-11-0/bond-transaction-dialog.png" alt="Bond transaction dialog" /></p>
+
+<h2 id="download">Download</h2>
+
+<p>This version has been implemented for <a href="https://pactus.org/2023/05/09/testnet-1-launched.html">Testnet-1</a> and
+is being prepared for the upcoming Mainnet launch.
+To start using Pactus Blockchain Testnet-1, download the latest version from the
+<a href="/download">download</a> page and join the Testnet.</p>
+
+<p>These guides can help you to run and configure your node:</p>
+
+<ul>
+  <li><a href="/user-guides/run-pactus-gui">How to run Pactus in graphic mode?</a></li>
+  <li><a href="/user-guides/run-pactus-cli">How to run Pactus in command line mode?</a></li>
+  <li><a href="/user-guides/run-pactus-docker">How to run Pactus using Docker?</a></li>
+</ul>
+
+<h2 id="how-to-upgrade">How to Upgrade</h2>
+
+<p>If you are running an older version, shut it down.
+Uninstall the previous version and install the newer version.
+If you are using the archived version, simply use the new version.</p>
+
+<h2 id="change-log">Change log</h2>
+
+<p>This version includes several changes and improvements, such as:</p>
+
+<h3 id="fix">Fix</h3>
+
+<ul>
+  <li><strong>gui</strong>: showing the total number of validators (<a href="https://github.com/pactus-project/pactus/pull/474">#474</a>)</li>
+  <li><strong>network</strong>: fixing relay connection issue (<a href="https://github.com/pactus-project/pactus/pull/475">#475</a>)</li>
+  <li><strong>consensus</strong>: rejecting vote with round numbers exceeding the limit (<a href="https://github.com/pactus-project/pactus/pull/466">#466</a>)</li>
+  <li>increase failed counter when stream got error (<a href="https://github.com/pactus-project/pactus/pull/489">#489</a>)</li>
+  <li>boosting syncing process (<a href="https://github.com/pactus-project/pactus/pull/482">#482</a>)</li>
+  <li>waiting for proposal in pre-commit phase (<a href="https://github.com/pactus-project/pactus/pull/486">#486</a>)</li>
+  <li>retrieving public key from wallet for bond transactions (<a href="https://github.com/pactus-project/pactus/pull/485">#485</a>)</li>
+  <li>restoring config file to the default (<a href="https://github.com/pactus-project/pactus/pull/484">#484</a>)</li>
+  <li>defining ChainType in genesis to detect the type of network (<a href="https://github.com/pactus-project/pactus/pull/483">#483</a>)</li>
+  <li>reducing the default Argon2d to consume less memory (<a href="https://github.com/pactus-project/pactus/pull/480">#480</a>)</li>
+  <li>adding password option to the start commands (<a href="https://github.com/pactus-project/pactus/pull/473">#473</a>)</li>
+</ul>
+
+<h3 id="refactor">Refactor</h3>
+
+<ul>
+  <li>rename send to transfer. (<a href="https://github.com/pactus-project/pactus/pull/469">#469</a>)</li>
+</ul>
+
+<p>You can find the <a href="https://github.com/pactus-project/pactus/compare/v0.10.0...v0.11.0">full list of changes on Github</a>,
+as well as the <a href="https://github.com/pactus-project/pactus/releases/tag/v0.11.0">source code</a></p>]]></content><author><name></name></author><category term="announcement," /><category term="release," /><category term="testnet" /><summary type="html"><![CDATA[Overview]]></summary></entry><entry><title type="html">Testnet-1 launch announcement</title><link href="https://pactus.org/2023/05/09/testnet-1-launched.html" rel="alternate" type="text/html" title="Testnet-1 launch announcement" /><published>2023-05-09T00:00:00+00:00</published><updated>2023-05-09T00:00:00+00:00</updated><id>https://pactus.org/2023/05/09/testnet-1-launched</id><content type="html" xml:base="https://pactus.org/2023/05/09/testnet-1-launched.html"><![CDATA[<h2 id="overview">Overview</h2>
+
+<p>The Pactus blockchain Testnet-1 is now available for participation.
+This version simulates the Mainnet environment and evaluate the system’s performance, stability,
+and security in a controlled environment.
+The primary goal of this version of Testnet is to determine the efficient and secure committee size for the Mainnet.</p>
+
+<h2 id="key-aspects">Key Aspects</h2>
+
+<ul>
+  <li>Simulating the Mainnet environment</li>
+  <li>Determining the actual block creation time</li>
+  <li>Assessing the staking mechanism and consensus protocol</li>
+  <li>Evaluating network usage under different loads</li>
+  <li>Evaluating the syncing process for new nodes joining the network</li>
+  <li>Ensuring network stability with over 1000 validators</li>
+  <li>Evaluating transaction performance</li>
+  <li>Conducting stress tests</li>
+  <li>Performing security tests, including double spend attacks, Sybil attacks
+(nodes with different identities), and forking resistance</li>
+</ul>
+
+<h2 id="joining-testnet-1">Joining Testnet-1</h2>
+
+<p>To join the testnet, <a href="/download">download</a> Pactus software
+<a href="/2023/05/08/release-0-10-0.html">version 0.10.0</a> and
+connect to Testnet without any special configuration or hardware.
+You can run the software on your personal computer or laptop.
+To acquire test coins, visit the <a href="https://discord.gg/H5vZkNnXCu">Discord</a> channel and
+provide your validator address.</p>
+
+<h2 id="benefits-for-participation">Benefits for Participation</h2>
+
+<p>By taking part in the Testnet, users can familiarize themselves with the Pactus blockchain and
+be well-prepared for the Mainnet launch.
+<strong>Testnet participants will also receive higher priority during the Mainnet launch and
+get free coins for initial staking on the Mainnet.</strong></p>
+
+<h2 id="your-feedback-matters">Your Feedback Matters</h2>
+
+<p>User feedback plays a vital role in the improvement of the Pactus blockchain.
+Share your thoughts and experiences to contribute to the enhancement of future software versions.</p>]]></content><author><name></name></author><category term="announcement," /><category term="testnet" /><summary type="html"><![CDATA[Overview]]></summary></entry><entry><title type="html">Pactus 0.10.0 released</title><link href="https://pactus.org/2023/05/08/release-0-10-0.html" rel="alternate" type="text/html" title="Pactus 0.10.0 released" /><published>2023-05-08T00:00:00+00:00</published><updated>2023-05-08T00:00:00+00:00</updated><id>https://pactus.org/2023/05/08/release-0-10-0</id><content type="html" xml:base="https://pactus.org/2023/05/08/release-0-10-0.html"><![CDATA[<h2 id="overview">Overview</h2>
+
+<p>Pactus Blockchain <a href="https://github.com/pactus-project/pactus/releases/tag/v0.10.0">Version 0.10.0</a>
+is now available for download.
+This release includes a graphical user interface (GUI) that
+is suitable for both beginners and experienced users.
+It also includes a command-line interface (CLI) for advanced users and wallet software
+that allows users to interact with the blockchain without the need to sync the entire blockchain.</p>
+
+<h2 id="highlight">Highlight</h2>
+
+<p>The main update in this version allows users to set up multiple validators in one node.
+Users can set up to 32 validators in a single node, and each validator can stake up to 1,000 coins.</p>
+
+<p><img src="https://pactus.org/blog/images/2023-05-08-release-0-10-0/multi-validators.png" alt="Multi validators" /></p>
+
+<h2 id="download">Download</h2>
+
+<p>This version has been implemented for <a href="https://pactus.org/2023/05/09/testnet-1-launched.html">Testnet-1</a> and
+is being prepared for the upcoming Mainnet launch.
+To start using Pactus Blockchain Testnet-1, download the latest version from the
+<a href="/download">download</a> page and join the Testnet.</p>
+
+<p>These guides can help you to run and configure your node:</p>
+
+<ul>
+  <li><a href="/user-guides/run-pactus-gui">How to run Pactus in graphic mode?</a></li>
+  <li><a href="/user-guides/run-pactus-cli">How to run Pactus in command line mode?</a></li>
+  <li><a href="/user-guides/run-pactus-docker">How to run Pactus using Docker?</a></li>
+</ul>
+
+<h2 id="change-log">Change log</h2>
+
+<p>This version includes several changes and improvements, such as:</p>
+
+<h3 id="feat">Feat</h3>
+
+<ul>
+  <li>removing address from account (<a href="https://github.com/pactus-project/pactus/pull/454">#454</a>)</li>
+  <li>supporting multiple consensus instances (<a href="https://github.com/pactus-project/pactus/pull/450">#450</a>)</li>
+  <li>adding sortition interval to the parameters (<a href="https://github.com/pactus-project/pactus/pull/442">#442</a>)</li>
+</ul>
+
+<h3 id="fix">Fix</h3>
+
+<ul>
+  <li><strong>gui</strong>: check if the node has an active consensus instance (<a href="https://github.com/pactus-project/pactus/pull/458">#458</a>)</li>
+  <li>Use of a Persistent Merkle tree to enhance performance of calculating the
+<a href="/learn/blockchain/state-hash">state hash</a>; fully tested in Testnet-0 (<a href="https://github.com/pactus-project/pactus/pull/432">#432</a>)</li>
+  <li><code class="language-plaintext highlighter-rouge">GetBlockchainInfo</code> API in gRPC now returns the total number of validators and accounts (<a href="https://github.com/pactus-project/pactus/pull/439">#439</a>)</li>
+  <li>wallet path as argument (<a href="https://github.com/pactus-project/pactus/pull/455">#455</a>)</li>
+  <li>adding reward addresses to config (<a href="https://github.com/pactus-project/pactus/pull/453">#453</a>)</li>
+  <li>removing committers from the certificate hash (<a href="https://github.com/pactus-project/pactus/pull/444">#444</a>)</li>
+  <li>prevent data race conditions in committee (<a href="https://github.com/pactus-project/pactus/pull/452">#452</a>)</li>
+  <li>using 2^256 for the vrf denominator (<a href="https://github.com/pactus-project/pactus/pull/445">#445</a>)</li>
+</ul>
+
+<p>You can find the <a href="https://github.com/pactus-project/pactus/compare/v0.9.1...v0.10.0">full list of changes on Github</a>,
+as well as the <a href="https://github.com/pactus-project/pactus/releases/tag/v0.10.0">source code</a></p>]]></content><author><name></name></author><category term="announcement," /><category term="release," /><category term="testnet" /><summary type="html"><![CDATA[Overview]]></summary></entry><entry><title type="html">Story of Testnet-0</title><link href="https://pactus.org/2023/04/21/testnet-0-concluded.html" rel="alternate" type="text/html" title="Story of Testnet-0" /><published>2023-04-21T00:00:00+00:00</published><updated>2023-04-21T00:00:00+00:00</updated><id>https://pactus.org/2023/04/21/testnet-0-concluded</id><content type="html" xml:base="https://pactus.org/2023/04/21/testnet-0-concluded.html"><![CDATA[<h2 id="what-is-testnet">What is testnet?</h2>
+
+<p>Testnet is a testing environment where developers and users can try out the functionality of a blockchain project,
+without putting real assets or data at risk.
+It helps to ensure that the final product is reliable and secure for users to use.
+If you like to read more about the Testnet you can check out our post on
+“<a href="/2023/03/01/what-is-testnet.html">What is Testnet?</a>”.</p>
+
+<h2 id="summary-of-testnet-0">Summary of Testnet-0</h2>
+
+<p>In September 2022, we <a href="/2022/09/24/testnet-0-launched.html">launched</a> our first Testnet.
+The purpose of this Testnet was to
+check the <a href="https://pactus.org/learn/consensus/protocol/">consensus protocol</a>,
+test different <a href="https://pactus.org/learn/transaction/format/">transaction</a> types,
+and ensure the stability of the blockchain.
+We also wanted to test the <a href="https://pactus.org/learn/consensus/sortition/">sortition algorithm</a>
+to make sure it works properly.</p>
+
+<p>The <a href="https://pactus.org/learn/consensus/committee/">committee</a>
+for the Testnet-0 was set to five validators, and more than 19 validators joined during the Testnet period.
+<strong>Over 2 million blocks were created, and more than 3.2 million transactions were processed during this time.
+The size of the blockchain is approximately 1 gigabyte.
+The maximum number of transactions recorded in a single block was 386</strong>. With a block time of 10 seconds,
+we can confirm that Pactus blockchain can support up to 30 transactions per second (TPS),
+which is a reasonable number for TPS. Based on real-time statistics available at <a href="https://realtps.net/">realtps</a>,
+we can see that Pactus is among the top 10 blockchains in terms of TPS.</p>
+
+<p>At this point, the development team decided to <strong>end the Testnet-0</strong> and move on to the next one,
+Testnet-1. We are planning to run the Testnet-1 to prepare for the MainNet launch.
+We will provide updates on our progress and share the details of the new Testnet soon.</p>
+
+<p>As promised, <strong>participants in Testnets will be given priority as validators for the MainNet</strong>,
+and will receive bounty tokens from the bootstrap accounts to set up their validator.
+We are grateful to all those who participated in Testnet-0, and we encourage them to join our next Testnet to
+help us improve Pactus.
+As a community-based project, we rely on the support of our community members, and we value any help we receive.</p>]]></content><author><name></name></author><category term="announcement," /><category term="testnet" /><summary type="html"><![CDATA[What is testnet?]]></summary></entry><entry><title type="html">What is a Testnet?</title><link href="https://pactus.org/2023/03/01/what-is-testnet.html" rel="alternate" type="text/html" title="What is a Testnet?" /><published>2023-03-01T00:00:00+00:00</published><updated>2023-03-01T00:00:00+00:00</updated><id>https://pactus.org/2023/03/01/what-is-testnet</id><content type="html" xml:base="https://pactus.org/2023/03/01/what-is-testnet.html"><![CDATA[<h2 id="mainnet-vs-testnet">Mainnet vs Testnet?</h2>
+
+<p>If you have ever wondered what Testnet is and how it is different from Mainnet, read this article to the end to find out!</p>
+
+<p>Mainnet and Testnet are two widely used terminologies in the Blockchain ecosystem;
+so it is important to understand the meaning and differences while working in the industry or
+following announcements of the Blockchain projects like Pactus.</p>
+
+<p>Here’s a quick explanation:
+Before the actual live version of a Blockchain network that is used for real transactions,
+functions and smart-contracts (which is referred as Mainnet),
+there is a test version of the Blockchain network for testing purposes (which is referred as Testnet).
+In Testnet, a safe environment is provided to help developers experiment and test their applications,
+and make sure that everything functions smoothly in the Mainnet version.</p>
+
+<h2 id="testnet">Testnet</h2>
+
+<p>A Testnet is a simulation of a Blockchain, in which developers can test all the functionalities of
+their Blockchain network without risking their assets and convenience of end-users.
+Using Testnet, any possible error, bug or malfunctions can be fixed before the Mainnet launch.
+Testnet also can be an experimental environment for new features, updates and upgrades.
+So several Testnet networks of the same version or newer version of the Mainnet can be implemented on the roadmap.</p>
+
+<h2 id="what-are-use-cases-of-testnet">What are use cases of Testnet?</h2>
+
+<p><strong>A secure environment to test development ideas and updates.</strong>
+So many features and minor details in Pactus project have been successfully developed so far using the Testnet; such as:</p>
+
+<ul>
+  <li>extra details and information on Pactus-GUI;</li>
+  <li>well-functioning Pactus Blockchain explorer to access transactions and block details;</li>
+  <li>Upgrades that led to decreasing the size of the Pactus network</li>
+</ul>
+
+<p><strong>Providing a safe testing ground for resolve scalability and security problems, as well as decentralization issues.</strong>
+Pactus network is also a secure and purely decentralized network. However in the last updates during the Testnet,
+developers are now able to decrease the database size by approximately 10% without compromising performance.
+They did it by utilizing block height instead of hash to store blocks within the database. (you can find out more
+<a href="https://github.com/pactus-project/pactus/pull/416">here</a>).</p>
+
+<p><strong>Testing new versions, patches and features on Testnet.</strong> it is vital for enhancing the security, load testing,
+Blockchain migration, integration tests, and etc. This is why you can now use the latest version of Pactus-GUI
+that works like clockwork and is extremely secure.</p>
+
+<p><strong>Testing the functions of cryptocurrency without disrupting the Mainnet.</strong> In the Testnet of Pactus Blockchain,
+you as a user or validator can use all the features to send, receive, bond or unbond your assets in the Pactus-GUI.</p>
+
+<p><strong>Development and simulation of smart contract features and DApps.</strong> Note that many Blockchain projects like Pactus,
+can be used as smart-contract platforms. So the Testnet can be designed in different stages to test and improve
+different applications of the network.</p>
+
+<p>Please note that after a certain period of time, when developers get satisfied with the functionality and debugging process,
+they launch Mainnet. Mainnet has its own independent genesis blocks;
+so the assets and addresses that users use in Testnet are not valid inside the new Mainnet Blockchain anymore.
+In fact the whole Blockchain network starts working from the scratch and users and validators start to
+work with real tokens and transactions instead of the simulated ones. But since Testnet has an important effect
+on the health and improvement of the network, in Pactus Blockchain, we have several advantages
+for the people who join the Testnet.</p>
+
+<h2 id="why-should-you-join-the-testnet">Why should you join the Testnet?</h2>
+
+<p>There are different contributors in a Blockchain network;
+Some people are developers and programmers that use the Testnet to contribute, enhance and lead the project to a better future.
+Testnet is actually vital for them to perform their changes and try their innovations and ideas.</p>
+
+<p>But you might also be an end user; you might want to either be a validator and stake your assets to earn more Pactus coins,
+or you might want to learn <strong>how to use the network for future</strong> personal applications. Either way,
+you might find it handy to give it a try and be familiar with Pactus-GUI and its different features.</p>
+
+<p><strong>However, there is another advantage for end users who join the Testnet.</strong>
+While using the network, running a node or testing the Pactus-GUI in Testnet period, you are contributing to
+the community to find improvement potentials, that’s why there are more advantages contemplated for the Testnet users;
+Soon our Mainnet will be launched and also Pactus network will be announced and listed in well-known exchanges.
+As an early contributor, you will have the advantage of getting some extra initial tokens at the beginning of Mainnet launch.
+So that you can use it to run a validator node and earn more from staking your assets. This airdrop is considered
+for every individual who installs Pactus-GUI and starts a node in Testnet.</p>
+
+<p>There are other positive conditions you may experience as an early contributor.</p>
+
+<ul>
+  <li>Advanced and very responsive support for your issues (we dedicate more time to provide you with solutions)</li>
+  <li>Embracing your suggestions, improvement ideas, needs and information you may require to have a better user experience.</li>
+</ul>]]></content><author><name></name></author><category term="tutorial" /><summary type="html"><![CDATA[Mainnet vs Testnet?]]></summary></entry><entry><title type="html">Pactus 0.9.1 released</title><link href="https://pactus.org/2022/11/24/release-0-9-1.html" rel="alternate" type="text/html" title="Pactus 0.9.1 released" /><published>2022-11-24T00:00:00+00:00</published><updated>2022-11-24T00:00:00+00:00</updated><id>https://pactus.org/2022/11/24/release-0-9-1</id><content type="html" xml:base="https://pactus.org/2022/11/24/release-0-9-1.html"><![CDATA[<h2 id="overview">Overview</h2>
+
+<p>Pactus Blockchain Release <a href="https://github.com/pactus-project/pactus/releases/tag/v0.9.1">Version 0.9.1</a>
+is now available for download.
+This release includes a graphical user interface (GUI) that
+is suitable for both beginners and experienced users.
+It also includes a command-line interface (CLI) for advanced users and wallet software
+that allows users to interact with the blockchain without the need to sync the entire blockchain.</p>
+
+<h2 id="download">Download</h2>
+
+<p>This version has been implemented for Testnet-0 and is preparing for the upcoming Mainnet launch.
+To start using the Pactus Blockchain Testnet-0,
+you can download the latest version from <a href="/download">download</a> page
+and join the Testnet.</p>
+
+<h2 id="change-log">Change log</h2>
+
+<p>This version includes several changes and improvements, such as:</p>
+
+<ul>
+  <li>Blocks can be fully decoded when queried in gRPC</li>
+  <li>The HTTP module now uses gRPC module, making node configuration simpler by removing the CapnP module</li>
+  <li>Reducing the blockchain size by saving blocks by number instead of hash</li>
+  <li>The wallet can hold unconfirmed transactions</li>
+  <li>The wallet can use different gRPC servers</li>
+  <li>The GUI displays committee information</li>
+</ul>
+
+<p>You can find the <a href="https://github.com/pactus-project/pactus/compare/v0.9.0...v0.9.1">full list of changes on Github</a>,
+as well as the <a href="https://github.com/pactus-project/pactus/releases/tag/v0.9.1">source code</a></p>]]></content><author><name></name></author><category term="announcement," /><category term="release," /><category term="testnet" /><summary type="html"><![CDATA[Overview]]></summary></entry><entry><title type="html">Dev meeting</title><link href="https://pactus.org/2022/10/30/dev-meeting.html" rel="alternate" type="text/html" title="Dev meeting" /><published>2022-10-30T00:00:00+00:00</published><updated>2022-10-30T00:00:00+00:00</updated><id>https://pactus.org/2022/10/30/dev-meeting</id><content type="html" xml:base="https://pactus.org/2022/10/30/dev-meeting.html"><![CDATA[<h2 id="meeting-summary">Meeting Summary</h2>
+
+<p>The meeting took place on 30 October 2022, at 2:00 PM UTC via Google Meet,
+with team members from different time zones joining to discuss key aspects of the Pactus project.</p>
+
+<h3 id="in-memory-of-mahsa-amini">In memory of Mahsa Amini</h3>
+
+<p>The meeting started in memory of <a href="https://en.wikipedia.org/wiki/Death_of_Mahsa_Amini">Mahsa Amini</a>.
+We in the Pactus family stand in solidarity with courageous people who are fighting for equality, equity and freedom in Iran.</p>
+
+<p><img src="/blog/images/2022-10-30-dev-meeting/women_life_freedom.png" alt="Woman Life Freedom" /></p>
+
+<h3 id="launching-block-explorer">Launching Block explorer</h3>
+
+<p>The beta version of the block explorer has been launched 🚀 and is now available at
+<a href="https://www.pactusscan.com">https://www.pactusscan.com</a>.</p>
+
+<p>Nagaraj explained the block explorer and some of the features.</p>
+
+<h3 id="project-road-map">Project road map</h3>
+
+<p>Project <a href="https://pactus.org/about/roadmap/">road map</a> was discussed.</p>
+
+<h3 id="ideakita-pitch-deck">IdeaKita pitch deck</h3>
+
+<p>Ali presented the Pactus pitch deck for the <a href="https://mdec.my/ideakita/">IdeaKita</a> in Malaysia.
+The IdeaKita program, under the Malaysia Digital Economy Corporation (MDEC), is designed to
+support entrepreneurs and startups in Malaysia.</p>
+
+<h3 id="latest-development-progress">Latest development progress</h3>
+
+<p>The latest pull requests were reviewed:</p>
+
+<ul>
+  <li><a href="https://github.com/pactus-project/pactus/pull/414">https://github.com/pactus-project/pactus/pull/414</a></li>
+  <li><a href="https://github.com/pactus-project/pactus/pull/415">https://github.com/pactus-project/pactus/pull/415</a></li>
+  <li><a href="https://github.com/pactus-project/pactus/pull/416">https://github.com/pactus-project/pactus/pull/416</a></li>
+  <li><a href="https://github.com/pactus-project/pactus/pull/417">https://github.com/pactus-project/pactus/pull/417</a></li>
+</ul>]]></content><author><name></name></author><category term="dev-meeting" /><summary type="html"><![CDATA[Meeting Summary]]></summary></entry><entry><title type="html">Testnet-0 launch announcement</title><link href="https://pactus.org/2022/09/24/testnet-0-launched.html" rel="alternate" type="text/html" title="Testnet-0 launch announcement" /><published>2022-09-24T00:00:00+00:00</published><updated>2022-09-24T00:00:00+00:00</updated><id>https://pactus.org/2022/09/24/testnet-0-launched</id><content type="html" xml:base="https://pactus.org/2022/09/24/testnet-0-launched.html"><![CDATA[<p><img src="https://pactus.org/blog/images/2022-09-24-testnet-0-launched/testnet.gif" alt="testnet" /></p>
+
+<p>The Pactus blockchain Testnet-0 is now accessible.
+To participate, simply <a href="/download">download</a> the Pactus application version 0.9.0 and
+connect to the Testnet without any special configurations.
+For test coins, please visit our <a href="https://discord.gg/H5vZkNnXCu">Discord</a> channel and share your validator address.</p>
+
+<p>By taking part in the Testnet, you can familiarize yourself with the Pactus blockchain and
+get ready for the Mainnet launch.
+<strong>Testnet participants will also be given higher priority during the Mainnet launch.</strong></p>
+
+<p>Please share your feedback with us to help improve the user experience in future versions of the software.</p>]]></content><author><name></name></author><category term="announcement," /><category term="testnet" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Pactus 0.9.0 released</title><link href="https://pactus.org/2022/09/20/release-0-9-0.html" rel="alternate" type="text/html" title="Pactus 0.9.0 released" /><published>2022-09-20T00:00:00+00:00</published><updated>2022-09-20T00:00:00+00:00</updated><id>https://pactus.org/2022/09/20/release-0-9-0</id><content type="html" xml:base="https://pactus.org/2022/09/20/release-0-9-0.html"><![CDATA[<h2 id="overview">Overview</h2>
+
+<p>Pactus Blockchain Release <a href="https://github.com/pactus-project/pactus/releases/tag/v0.9.0">Version 0.9.0</a>
+is now available for download.
+This release includes a new graphical user interface (GUI) that
+is suitable for both beginners and experienced users.
+It also includes a command-line interface (CLI) for advanced users and wallet software
+that allows users to interact with the blockchain without the need to sync the entire blockchain.</p>
+
+<h2 id="download">Download</h2>
+
+<p>This version has been implemented for Testnet-0 and is preparing for the upcoming Mainnet launch.
+To get started with the Pactus Blockchain Testnet-0, simply <a href="/download">download</a>
+the latest version and run the Pactus software.</p>
+
+<p>Join the Testnet now and get ready for the future!</p>]]></content><author><name></name></author><category term="announcement," /><category term="release," /><category term="testnet" /><summary type="html"><![CDATA[Overview]]></summary></entry><entry><title type="html">Dev meeting</title><link href="https://pactus.org/2022/09/18/dev-meeting.html" rel="alternate" type="text/html" title="Dev meeting" /><published>2022-09-18T00:00:00+00:00</published><updated>2022-09-18T00:00:00+00:00</updated><id>https://pactus.org/2022/09/18/dev-meeting</id><content type="html" xml:base="https://pactus.org/2022/09/18/dev-meeting.html"><![CDATA[<h2 id="meeting-summary">Meeting Summary</h2>
+
+<p>The meeting took place on 18 September 2022, at 2:00 PM UTC via Google Meet,
+with team members from different time zones joining to discuss key aspects of the Pactus project.</p>
+
+<h3 id="discussion-about-testnet">Discussion about Testnet</h3>
+
+<p>The team discussed Testnet and related issues, including IP block issues that were found by Hadi.
+Due to sanctions, some IPs are blocked, so the team will run a support node to assist users inside Iran.
+The GUI application had some issues on Windows, but they were fixed and tested by Hadi.</p>
+
+<h3 id="discussion-about-website">Discussion about Website</h3>
+
+<p>The website still has some issues, such as the need to rename the animation to “Pactus” and the lack of a logo.
+The community suggested some logos. Additionally, the roadmap page is missing.</p>
+
+<h3 id="status-of-social-medias">Status of social medias</h3>
+
+<p>The team discussed the status of social media platforms, including:</p>
+
+<ul>
+  <li>Discord: 70 members</li>
+  <li>Instagram: 87 followers</li>
+  <li>Telegram: 20 followers</li>
+  <li>Linkedin: 20 followers</li>
+  <li>Twitter: Not yet</li>
+</ul>
+
+<p>The team also decided to announce the project on social media on 29 September.</p>
+
+<h3 id="consensus-parameters">Consensus parameters</h3>
+
+<p>The team discussed the current consensus parameters:</p>
+
+<ul>
+  <li>Total supply: 21 million coins</li>
+  <li>Reward: 1 coin per block</li>
+  <li>Block time: 10 second</li>
+  <li>Committee size: 21 members</li>
+  <li>Bond interval: one hour</li>
+  <li>Unbond interval: 21 days</li>
+  <li>Fee fraction: 0.0001</li>
+  <li>Min fee: 0.0000001</li>
+  <li>Max fee: 0.01</li>
+  <li>Maximum stake: 12381</li>
+</ul>]]></content><author><name></name></author><category term="dev-meeting" /><summary type="html"><![CDATA[Meeting Summary]]></summary></entry><entry><title type="html">Dev meeting</title><link href="https://pactus.org/2022/09/04/dev-meeting.html" rel="alternate" type="text/html" title="Dev meeting" /><published>2022-09-04T00:00:00+00:00</published><updated>2022-09-04T00:00:00+00:00</updated><id>https://pactus.org/2022/09/04/dev-meeting</id><content type="html" xml:base="https://pactus.org/2022/09/04/dev-meeting.html"><![CDATA[<h2 id="meeting-summary">Meeting Summary</h2>
+
+<p>The meeting took place on 29 August 2022, at 2:00 PM UTC via Google Meet,
+with team members from different time zones joining to discuss key aspects of the Pactus project.</p>
+
+<h3 id="project-renamed-to-pactus">Project renamed to Pactus</h3>
+
+<p>During the last meeting, the team conducted an online survey to rename the project.
+A total of 31 responses were received, and the following names were suggested:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sirius</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>Pactus</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Nova</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>Texo</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Zemus</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Helios</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Tutti</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Haki</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Aegeus</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Virgo</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Zentora</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Zinova</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Xerxes</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Ledgeria</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Solidus</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Welt</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Ventura</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Zebra</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Miranet</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Monetha</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>FutureHub</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Muonet</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Mentha</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Hypatios</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Chaintopia</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Sycee</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Lepus</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>After reviewing the responses, the team chose “Pactus” as the new name for the project. 🎉
+The project will be moved to “pactus-project/pactus,” and the team plans to announce it on social media.</p>
+
+<h3 id="discussion-on-gui">Discussion on GUI</h3>
+
+<p>In terms of the GUI, Joseph suggested using Flutter, and the team agreed.
+To interact with the wallet, gRPC APIs will be provided, and the GUI will use these APIs.</p>]]></content><author><name></name></author><category term="dev-meeting" /><summary type="html"><![CDATA[Meeting Summary]]></summary></entry><entry><title type="html">Dev meeting</title><link href="https://pactus.org/2022/08/29/dev-meeting.html" rel="alternate" type="text/html" title="Dev meeting" /><published>2022-08-29T00:00:00+00:00</published><updated>2022-08-29T00:00:00+00:00</updated><id>https://pactus.org/2022/08/29/dev-meeting</id><content type="html" xml:base="https://pactus.org/2022/08/29/dev-meeting.html"><![CDATA[<h2 id="meeting-summary">Meeting Summary</h2>
+
+<p>The meeting took place on 04 September 2022, at 2:00 PM UTC via Google Meet,
+with team members from different time zones joining to discuss key aspects of the Pactus project.</p>
+
+<h3 id="nanomsg-instead-of-zeromq">NanoMsg instead of ZeroMQ</h3>
+
+<p>During the meeting, Joseph suggested using Nanomsg instead of ZeroMQ because building ZeroMQ is not easy,
+especially in Windows. Additionally, we can use the pure Go implementation of Nanomsg.</p>
+
+<p>The format of block events was defined as follows:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;event_id: 1 byte&gt;&lt;event_data: variant&gt;&lt;height: 4 bytes&gt;&lt;seq_num: 4 bytes&gt;
+</code></pre></div></div>
+
+<p>As a consequence of this, smart contracts events can be defined more easily and
+Infura-like services become simple, as we can just replay the events.</p>
+
+<h3 id="reviewing-a-pull-request">Reviewing a Pull Request</h3>
+
+<p>Nagaraj’s <a href="https://github.com/pactus-project/pactus/pull/355">pull request</a> reviewed.</p>
+
+<h3 id="renaming-project">Renaming project</h3>
+
+<p>The team discussed renaming (rebranding) the project and decided to create an online survey to
+gather suggestions for a new name.
+Everyone is encouraged to participate in the survey and suggest new names for the project.</p>]]></content><author><name></name></author><category term="dev-meeting" /><summary type="html"><![CDATA[Meeting Summary]]></summary></entry></feed>
